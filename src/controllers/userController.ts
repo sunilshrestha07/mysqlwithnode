@@ -50,7 +50,11 @@ export const insertUser = async (req: Request, res: Response) => {
 export const specificUser = async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
-    const user = await dbconnection.query('SELECT * FROM users WHERE id = ?', [id]);
+    const [user]: any = await dbconnection.query('SELECT * FROM users WHERE id = ?', [id]);
+    if (user.length === 0) {
+      res.status(404).json({message: 'User not found'});
+      return;
+    }
     res.status(200).json({
       message: 'User found',
       user: user[0],
