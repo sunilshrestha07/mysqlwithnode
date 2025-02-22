@@ -4,6 +4,7 @@ import dbconnection from './db/dbconnect';
 import testRouter from './routes/testRouter';
 import userRouter from './routes/userRouter';
 import productRouter from './routes/productRouter';
+import orderRouter from './routes/orderRouter';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 app.use('/api/test', testRouter);
 app.use('/api/users', userRouter);
 app.use('/api/product', productRouter);
+app.use('/api/orders', orderRouter);
 
 //creating the connection with db
 dbconnection
